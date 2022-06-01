@@ -6,5 +6,5 @@ target 'KadaiChallenge16' do
   use_frameworks!
 
   # Pods for KadaiChallenge16
-'SwiftLint'
+pod 'SwiftLint'
 end

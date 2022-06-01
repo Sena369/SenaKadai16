@@ -9,9 +9,9 @@ import UIKit
 
 class AddItemViewController: UIViewController {
 
-    @IBOutlet weak var itemTextField: UITextField!
+    @IBOutlet private weak var itemTextField: UITextField!
 
-    weak var delegate: ItemDelegate?
+    weak var delegate: EditItemListDelegate?
     private var modalIdentifier = ""
     private var nameText = ""
 
@@ -22,10 +22,11 @@ class AddItemViewController: UIViewController {
 
     @IBAction func savrButton(_ sender: Any) {
         guard let text = itemTextField.text else { return }
+        guard !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         if modalIdentifier == "Add" {
-            delegate?.addDidSave(item: .init(name: text,isChecked: false))
+            delegate?.addItemDidSave(item: .init(name: text, isChecked: false))
         } else {
-            delegate?.editDidSave(name: text)
+            delegate?.editItemDidSave(name: text)
         }
     }
 
@@ -37,5 +38,4 @@ class AddItemViewController: UIViewController {
         modalIdentifier = identifier
         nameText = name
     }
-    
 }

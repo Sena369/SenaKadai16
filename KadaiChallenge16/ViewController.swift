@@ -7,14 +7,13 @@
 
 import UIKit
 
-protocol ItemDelegate: AnyObject {
-    func addDidSave(item: CheckItem) -> Void
-    func editDidSave(name: String) -> Void
-    func didCancel() -> Void
+protocol EditItemListDelegate: AnyObject {
+    func addItemDidSave(item: CheckItem)
+    func editItemDidSave(name: String)
+    func didCancel()
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ItemDelegate {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EditItemListDelegate {
     private var itemList: [CheckItem] = [
         .init(name: "りんご", isChecked: false),
         .init(name: "みかん", isChecked: true),
@@ -44,17 +43,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(nav, animated: true)
     }
 
-    func addDidSave(item: CheckItem) {
+    func addItemDidSave(item: CheckItem) {
         itemList.append(item)
         dismiss(animated: true)
         tableView.reloadData()
     }
 
-    func editDidSave(name: String) {
+    func editItemDidSave(name: String) {
         guard let editIndexPath = editIndexPath else { return }
         itemList[editIndexPath.row].name = name
-        tableView.reloadRows(at: [editIndexPath], with: .automatic)
         dismiss(animated: true)
+        tableView.reloadRows(at: [editIndexPath], with: .automatic)
     }
 
     func didCancel() {
@@ -91,4 +90,3 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(nav, animated: true)
     }
 }
-

@@ -15,10 +15,9 @@ class ItemTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var checkImageView: UIImageView!
     @IBOutlet private weak var itemLabel: UILabel!
-    
+
     func configure(item: CheckItem) {
         itemLabel.text = item.name
         checkImageView.image = item.isChecked ? UIImage(named: "check") : nil
     }
-
 }
