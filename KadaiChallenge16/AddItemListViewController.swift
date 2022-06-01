@@ -20,7 +20,7 @@ class AddItemViewController: UIViewController {
         itemTextField.text = nameText
     }
 
-    @IBAction func savrButton(_ sender: Any) {
+    @IBAction func saveButton(_ sender: Any) {
         guard let text = itemTextField.text else { return }
         guard !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         if modalIdentifier == "Add" {

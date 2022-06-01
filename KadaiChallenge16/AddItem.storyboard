@@ -40,7 +40,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="idK-EQ-hgm">
                             <connections>
-                                <action selector="savrButton:" destination="Y6W-OH-hqX" id="3sU-Yv-vHA"/>
+                                <action selector="saveButton:" destination="Y6W-OH-hqX" id="rE5-wc-GT0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -13,7 +13,7 @@ protocol EditItemListDelegate: AnyObject {
     func didCancel()
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EditItemListDelegate {
+class ViewController: UIViewController {
     private var itemList: [CheckItem] = [
         .init(name: "りんご", isChecked: false),
         .init(name: "みかん", isChecked: true),
@@ -42,24 +42,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let nav = UINavigationController(rootViewController: nextVC)
         present(nav, animated: true)
     }
+}
 
-    func addItemDidSave(item: CheckItem) {
-        itemList.append(item)
-        dismiss(animated: true)
-        tableView.reloadData()
-    }
-
-    func editItemDidSave(name: String) {
-        guard let editIndexPath = editIndexPath else { return }
-        itemList[editIndexPath.row].name = name
-        dismiss(animated: true)
-        tableView.reloadRows(at: [editIndexPath], with: .automatic)
-    }
-
-    func didCancel() {
-        dismiss(animated: true)
-    }
-
+extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemList.count
     }
@@ -72,7 +57,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.configure(item: itemList[indexPath.row])
         return cell
     }
+}
 
+extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         itemList[indexPath.row].isChecked.toggle()
         tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -88,5 +75,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         let nav = UINavigationController(rootViewController: nextVC)
         present(nav, animated: true)
+    }
+}
+
+extension ViewController: EditItemListDelegate {
+    func addItemDidSave(item: CheckItem) {
+        itemList.append(item)
+        dismiss(animated: true)
+        tableView.reloadData()
+    }
+
+    func editItemDidSave(name: String) {
+        guard let editIndexPath = editIndexPath else { return }
+        itemList[editIndexPath.row].name = name
+        dismiss(animated: true)
+        tableView.reloadRows(at: [editIndexPath], with: .automatic)
+    }
+
+    func didCancel() {
+        dismiss(animated: true)
     }
 }
