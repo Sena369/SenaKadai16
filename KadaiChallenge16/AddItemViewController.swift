@@ -12,21 +12,30 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var itemTextField: UITextField!
 
     weak var delegate: ItemDelegate?
+    private var modalIdentifier = ""
+    private var nameText = ""
 
-//    static func instantiate(didSave: @escaping (CheckItem) -> Void,
-//                            didCancel: @escaping () -> Void) -> AddItemViewController {
-//    }
-
-//    private var didSave: (CheckItem) -> Void = { _ in }
-//    private var didCancel: () -> Void = {}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        itemTextField.text = nameText
+    }
 
     @IBAction func savrButton(_ sender: Any) {
-        delegate?.didSave(item: .init(name: itemTextField.text ?? "",
-                                      isChecked: false))
+        guard let text = itemTextField.text else { return }
+        if modalIdentifier == "Add" {
+            delegate?.addDidSave(item: .init(name: text,isChecked: false))
+        } else {
+            delegate?.editDidSave(name: text)
+        }
     }
 
     @IBAction func cancelButton(_ sender: Any) {
         delegate?.didCancel()
+    }
+
+    func receiveModalInfo(identifier: String, name: String) {
+        modalIdentifier = identifier
+        nameText = name
     }
     
 }

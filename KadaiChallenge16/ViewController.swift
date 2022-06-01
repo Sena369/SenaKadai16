@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ItemDelegate: AnyObject {
-    func didSave(item: CheckItem) -> Void
+    func addDidSave(item: CheckItem) -> Void
+    func editDidSave(name: String) -> Void
     func didCancel() -> Void
 }
 
@@ -20,6 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         .init(name: "バナナ", isChecked: false),
         .init(name: "パイナップル", isChecked: true)
     ]
+    private var editIndexPath: IndexPath?
 
     @IBOutlet private weak var tableView: UITableView!
 
@@ -36,15 +38,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // swiftlint:disable:next force_cast
         as! AddItemViewController
         nextVC.delegate = self
+        nextVC.receiveModalInfo(identifier: "Add", name: "")
 
         let nav = UINavigationController(rootViewController: nextVC)
         present(nav, animated: true)
     }
 
-    func didSave(item: CheckItem) {
+    func addDidSave(item: CheckItem) {
         itemList.append(item)
         dismiss(animated: true)
         tableView.reloadData()
+    }
+
+    func editDidSave(name: String) {
+        guard let editIndexPath = editIndexPath else { return }
+        itemList[editIndexPath.row].name = name
+        tableView.reloadRows(at: [editIndexPath], with: .automatic)
+        dismiss(animated: true)
     }
 
     func didCancel() {
@@ -74,6 +84,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // swiftlint:disable:next force_cast
         as! AddItemViewController
         nextVC.delegate = self
+        nextVC.receiveModalInfo(identifier: "Edit", name: itemList[indexPath.row].name)
+        editIndexPath = indexPath
 
         let nav = UINavigationController(rootViewController: nextVC)
         present(nav, animated: true)
