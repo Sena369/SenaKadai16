@@ -14,6 +14,11 @@
 		D329D13628463019005CD975 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329D13428463019005CD975 /* Main.storyboard */; };
 		D329D1382846301B005CD975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D329D1372846301B005CD975 /* Assets.xcassets */; };
 		D329D13B2846301B005CD975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329D1392846301B005CD975 /* LaunchScreen.storyboard */; };
+		D34036902846E6E400041734 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D340368F2846E6E400041734 /* AddItemViewController.swift */; };
+		D34036932846E71000041734 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34036912846E71000041734 /* ItemTableViewCell.swift */; };
+		D34036942846E71000041734 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34036922846E71000041734 /* ItemTableViewCell.xib */; };
+		D34036962846E73F00041734 /* AddItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34036952846E73F00041734 /* AddItem.storyboard */; };
+		D34036982846E75600041734 /* CheckItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34036972846E75600041734 /* CheckItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		D329D1372846301B005CD975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D329D13A2846301B005CD975 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D329D13C2846301B005CD975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D340368F2846E6E400041734 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		D34036912846E71000041734 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		D34036922846E71000041734 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		D34036952846E73F00041734 /* AddItem.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddItem.storyboard; sourceTree = "<group>"; };
+		D34036972846E75600041734 /* CheckItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +66,6 @@
 				9B4EC8E3A3C96BDAFC8373B4 /* Pods-KadaiChallenge16.debug.xcconfig */,
 				31804932CB0D536B59821B97 /* Pods-KadaiChallenge16.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -84,9 +93,14 @@
 				D329D12E28463019005CD975 /* AppDelegate.swift */,
 				D329D13028463019005CD975 /* SceneDelegate.swift */,
 				D329D13228463019005CD975 /* ViewController.swift */,
+				D340368F2846E6E400041734 /* AddItemViewController.swift */,
+				D34036912846E71000041734 /* ItemTableViewCell.swift */,
+				D34036972846E75600041734 /* CheckItem.swift */,
+				D34036952846E73F00041734 /* AddItem.storyboard */,
 				D329D13428463019005CD975 /* Main.storyboard */,
-				D329D1372846301B005CD975 /* Assets.xcassets */,
+				D34036922846E71000041734 /* ItemTableViewCell.xib */,
 				D329D1392846301B005CD975 /* LaunchScreen.storyboard */,
+				D329D1372846301B005CD975 /* Assets.xcassets */,
 				D329D13C2846301B005CD975 /* Info.plist */,
 			);
 			path = KadaiChallenge16;
@@ -151,6 +165,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34036962846E73F00041734 /* AddItem.storyboard in Resources */,
+				D34036942846E71000041734 /* ItemTableViewCell.xib in Resources */,
 				D329D13B2846301B005CD975 /* LaunchScreen.storyboard in Resources */,
 				D329D1382846301B005CD975 /* Assets.xcassets in Resources */,
 				D329D13628463019005CD975 /* Main.storyboard in Resources */,
@@ -190,6 +206,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D329D13328463019005CD975 /* ViewController.swift in Sources */,
+				D34036982846E75600041734 /* CheckItem.swift in Sources */,
+				D34036902846E6E400041734 /* AddItemViewController.swift in Sources */,
+				D34036932846E71000041734 /* ItemTableViewCell.swift in Sources */,
 				D329D12F28463019005CD975 /* AppDelegate.swift in Sources */,
 				D329D13128463019005CD975 /* SceneDelegate.swift in Sources */,
 			);
