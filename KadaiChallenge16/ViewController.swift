@@ -33,11 +33,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func addButtonAction(_ sender: Any) {
+        giveModalInfo(identifier: "Add", itemName: "")
+    }
+
+    func giveModalInfo(identifier: String, itemName: String) {
         let nextVC = UIStoryboard(name: "AddItem", bundle: nil).instantiateInitialViewController()
         // swiftlint:disable:next force_cast
         as! AddItemViewController
         nextVC.delegate = self
-        nextVC.receiveModalInfo(identifier: "Add", name: "")
+        nextVC.receiveModalInfo(identifier: identifier, name: itemName)
 
         let nav = UINavigationController(rootViewController: nextVC)
         present(nav, animated: true)
@@ -66,15 +70,8 @@ extension ViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let nextVC = UIStoryboard(name: "AddItem", bundle: nil).instantiateInitialViewController()
-        // swiftlint:disable:next force_cast
-        as! AddItemViewController
-        nextVC.delegate = self
-        nextVC.receiveModalInfo(identifier: "Edit", name: itemList[indexPath.row].name)
         editIndexPath = indexPath
-
-        let nav = UINavigationController(rootViewController: nextVC)
-        present(nav, animated: true)
+        giveModalInfo(identifier: "Edit", itemName: itemList[indexPath.row].name)
     }
 }
 
