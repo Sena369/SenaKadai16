@@ -8,6 +8,6 @@
 import Foundation
 
 struct CheckItem {
-    let name: String
-    let isChecked: Bool
+    var name: String
+    var isChecked: Bool
 }

@@ -7,7 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol ItemDelegate: AnyObject {
+    func didSave(item: CheckItem) -> Void
+    func didCancel() -> Void
+}
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ItemDelegate {
 
     private var itemList: [CheckItem] = [
         .init(name: "りんご", isChecked: false),
@@ -26,6 +31,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                            forCellReuseIdentifier: ItemTableViewCell.identifier)
     }
 
+    @IBAction func addButtonAction(_ sender: Any) {
+        let nextVC = UIStoryboard(name: "AddItem", bundle: nil).instantiateInitialViewController()
+        // swiftlint:disable:next force_cast
+        as! AddItemViewController
+        nextVC.delegate = self
+
+        let nav = UINavigationController(rootViewController: nextVC)
+        present(nav, animated: true)
+    }
+
+    func didSave(item: CheckItem) {
+        itemList.append(item)
+        dismiss(animated: true)
+        tableView.reloadData()
+    }
+
+    func didCancel() {
+        dismiss(animated: true)
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemList.count
     }
@@ -39,8 +64,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
-    @IBAction func addButtonAction(_ sender: Any) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        itemList[indexPath.row].isChecked.toggle()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
-    
+
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let nextVC = UIStoryboard(name: "AddItem", bundle: nil).instantiateInitialViewController()
+        // swiftlint:disable:next force_cast
+        as! AddItemViewController
+        nextVC.delegate = self
+
+        let nav = UINavigationController(rootViewController: nextVC)
+        present(nav, animated: true)
+    }
 }
 
