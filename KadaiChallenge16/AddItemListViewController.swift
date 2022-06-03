@@ -9,24 +9,40 @@ import UIKit
 
 class AddItemViewController: UIViewController {
 
+    enum Mode {
+        case add
+        case rename(String)
+    }
+
     @IBOutlet private weak var itemTextField: UITextField!
 
     weak var delegate: EditItemListDelegate?
-    private var modalIdentifier = ""
-    private var nameText = ""
+    private var mode: Mode?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemTextField.text = nameText
+
+        switch mode {
+        case .add:
+            break
+        case .rename(let name):
+            itemTextField.text = name
+        case nil:
+            fatalError("mode is nil.")
+        }
     }
 
     @IBAction func saveButton(_ sender: Any) {
         guard let text = itemTextField.text else { return }
         guard !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-        if modalIdentifier == "Add" {
+
+        switch mode {
+        case .add:
             delegate?.addItemDidSave(item: .init(name: text, isChecked: false))
-        } else {
+        case .rename:
             delegate?.editItemDidSave(name: text)
+        case nil:
+            fatalError("mode is nil.")
         }
     }
 
@@ -34,8 +50,7 @@ class AddItemViewController: UIViewController {
         delegate?.didCancel()
     }
 
-    func receiveModalInfo(identifier: String, name: String) {
-        modalIdentifier = identifier
-        nameText = name
+    func setup(mode: Mode) {
+        self.mode = mode
     }
 }
