@@ -9,6 +9,7 @@ import UIKit
 
 class AddItemViewController: UIViewController {
 
+    // pushテスト
     enum Mode {
         case add
         case rename(String)
